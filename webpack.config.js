@@ -5,6 +5,9 @@ let nodeExternals = require('webpack-node-externals');
 // Required for Create React App Babel transform
 process.env.NODE_ENV = 'production';
 
+// For debug purposes (todo::remove after everything done)
+process.env.SLS_DEBUG = '*';
+
 module.exports = {
   // Use all js files in project root (except
   // the webpack config) as an entry
