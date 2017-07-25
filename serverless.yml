@@ -2,7 +2,7 @@ service: notes-app-api
 
 
 plugins:
-  - seerverless-webpack
+  - serverless-webpack
 
 
 custom:
