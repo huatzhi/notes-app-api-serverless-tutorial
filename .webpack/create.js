@@ -98,7 +98,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // todo::instead of using string, using variable from serverless.yml if possible
 // or, create an environment yml file to do it
-_awsSdk2.default.config.update({ region: 'ap-northeast-2' });
+_awsSdk2.default.config.update({ region: 'ap-southeast-1' });
 var dynamoDb = new _awsSdk2.default.DynamoDB.DocumentClient();
 
 function main(event, context, callback) {
@@ -127,8 +127,8 @@ function main(event, context, callback) {
     if (error) {
       var _response = {
         statusCode: 500,
-        headers: headers,
-        body: (0, _stringify2.default)({ status: false })
+        headers: header,
+        body: (0, _stringify2.default)({ status: false, error: error })
       };
       callback(null, _response);
       return;
@@ -137,7 +137,7 @@ function main(event, context, callback) {
     // Return status code 200 and the newly created item
     var response = {
       statusCode: 200,
-      headers: headers,
+      headers: header,
       body: (0, _stringify2.default)(params.Item)
     };
     callback(null, response);

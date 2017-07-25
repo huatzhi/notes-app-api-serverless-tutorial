@@ -3,7 +3,7 @@ import AWS from 'aws-sdk';
 
 // todo::instead of using string, using variable from serverless.yml if possible
 // or, create an environment yml file to do it
-AWS.config.update({region: 'ap-northeast-2'});
+AWS.config.update({region: 'ap-southeast-1'});
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export function main(event, context, callback) {
@@ -34,7 +34,7 @@ export function main(event, context, callback) {
       const response = {
         statusCode: 500,
         headers: header,
-        body: JSON.stringify({status:false})
+        body: JSON.stringify({status:false, error:error})
       }
       callback(null, response);
       return;
@@ -43,7 +43,7 @@ export function main(event, context, callback) {
     // Return status code 200 and the newly created item
     const response = {
       statusCode: 200,
-      headers: headers,
+      headers: header,
       body: JSON.stringify(params.Item)
     }
     callback(null, response);
