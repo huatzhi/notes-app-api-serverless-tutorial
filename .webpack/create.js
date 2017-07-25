@@ -108,7 +108,7 @@ function main(event, context, callback) {
   var params = {
     TableName: 'notes',
     Item: {
-      userId: event.requestContext.indentity.cognitoIdentityId,
+      userId: event.requestContext.identity.cognitoIdentityId,
       noteId: _uuid2.default.v1(),
       content: data.content,
       attachment: data.attachment,
