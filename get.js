@@ -27,3 +27,5 @@ export async function main(event, context, callback) {
     callback(null, failure({status: false}));
   }
 };
+
+// serverless webpack invoke --function get --path mocks/get-event.json
