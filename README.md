@@ -18,6 +18,5 @@ I do not know this is the most correct way to do it tho, but it work.
 (This one probably is pretty temporally)<br>
 Serverless @1.18.0 break it. Use @1.17.0 instead.
 
-src: https://github.com/AnomalyInnovations/serverless-stack-com/issues/112#issuecomment-317217381
-
+src: https://github.com/AnomalyInnovations/serverless-stack-com/issues/112#issuecomment-317217381 <br>
 src: https://github.com/serverless/serverless/issues/3972
