@@ -1,12 +1,8 @@
 import uuid from 'uuid';
-import AWS from 'aws-sdk';
+import * as dynamoDbLib from './libs/dynamodb-lib';
+import { success, failure} from './libs/response-lib';
 
-// todo::instead of using string, using variable from serverless.yml if possible
-// or, create an environment yml file to do it
-AWS.config.update({region: 'ap-southeast-1'});
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
-
-export function main(event, context, callback) {
+export async function main(event, context, callback) {
   // Request body is passed in as a JSON encoded string in 'event.body'
   const data = JSON.parse(event.body);
 
@@ -21,31 +17,13 @@ export function main(event, context, callback) {
     }
   }
 
-  // todo:: use promise instead
-  dynamoDb.put(params, (error, data) => {
-    // Set response headers to enable CORS (Cross-Origin Resource Sharing)
-    const header = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true
-    };
-
-    // Return status code 500 on error
-    if (error) {
-      const response = {
-        statusCode: 500,
-        headers: header,
-        body: JSON.stringify({status:false, error:error})
-      }
-      callback(null, response);
-      return;
-    }
-
-    // Return status code 200 and the newly created item
-    const response = {
-      statusCode: 200,
-      headers: header,
-      body: JSON.stringify(params.Item)
-    }
-    callback(null, response);
-  });
+  try {
+    const result = await dynamoDbLib.call('put', params);
+    callback(null, success(params.Item));
+  } catch(e) {
+    callback(null, failure({status:false, error: e}));
+  }
 };
+
+// Use this to mock the create API:
+// serverless webpack invoke --function create --path mocks/create-event.json
