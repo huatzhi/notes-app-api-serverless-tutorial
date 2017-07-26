@@ -23,3 +23,4 @@ export async function main(event, context, callback) {
 };
 
 // note that if want to simulate delete, you need to change the json's 'id' field
+// serverless webpack invoke --function delete --path mocks/delete-event.json
