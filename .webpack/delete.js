@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -157,8 +157,7 @@ function buildResponse(statusCode, body) {
 /***/ }),
 /* 6 */,
 /* 7 */,
-/* 8 */,
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -186,7 +185,7 @@ var main = exports.main = function () {
           case 0:
             params = {
               TableName: 'notes',
-              // 'Key' defines the partition key and sort key of the item to be retrieved
+              // 'Key' defines the partition key and sort key of the item to be removed
               // - 'userId': Identity Pool identity id of the authenticated user
               // - 'noteId': path parameter
               Key: {
@@ -196,17 +195,12 @@ var main = exports.main = function () {
             };
             _context.prev = 1;
             _context.next = 4;
-            return dynamoDbLib.call('get', params);
+            return dynamoDbLib.call('delete', params);
 
           case 4:
             result = _context.sent;
 
-            if (result.Item) {
-              // Return the retrieved item
-              callback(null, (0, _responseLib.success)(result.Item));
-            } else {
-              callback(null, (0, _responseLib.failure)({ status: false, error: 'Item not found.' }));
-            }
+            callback(null, (0, _responseLib.success)({ status: true }));
             _context.next = 11;
             break;
 
@@ -241,7 +235,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 ;
 
-// serverless webpack invoke --function get --path mocks/get-event.json
+// note that if want to simulate delete, you need to change the json's 'id' field
 
 /***/ })
 /******/ ])));
