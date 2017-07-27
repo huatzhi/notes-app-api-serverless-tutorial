@@ -3,6 +3,10 @@ Note: http://serverless-stack.com/
 
 todo::add details in README
 
+
+
+## Issue faced
+
 ### SLS_DEBUG
 Just in case anyone not familiar with node.js and still want to try SLS_Debug, then get f***ed by Google, 
 add this in webpack.config.js right after the process.env.NODE_ENV line
